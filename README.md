@@ -23,7 +23,7 @@ await api.public.user({
 
 ## Reference
 
-SDK And Documenation made with https://github.com/elis-k/wrape
+SDK And Documentation made with https://github.com/elis-k/wrape
 
 - [public](#api-public)
 	- [user](#api-public-user)
