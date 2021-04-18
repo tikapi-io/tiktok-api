@@ -1,5 +1,5 @@
 {
-  "name": "tiktok-api",
+  "name": "tikapi",
   "version": "2.0.1",
   "description": "An fully managed unofficial TikTok app with OAuth capabilities",
   "main": "api.js",
