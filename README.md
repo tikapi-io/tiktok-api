@@ -29,6 +29,7 @@ SDK And Documentation made with https://github.com/elis-k/wrape
 	- [user](#api-public-user)
 	- [explore](#api-public-explore)
 	- [posts](#api-public-posts)
+	- [liked](#api-public-likes)
 	- [video](#api-public-video)
 	- [discover](#api-public-discover)
 		- [users](#api-public-discover-users)
@@ -312,6 +313,29 @@ cursor|query|false|
 	"hasMore": true
 }
 ```
+</details>
+
+
+<h3 id="api-public-likes">Liked</h3>
+
+Get liked posts of an user
+```javascript
+api.public.likes({
+	secUid: "MS4wLjABAAAAsHntXC3s0AvxcecggxsoVa4eAiT8OVafVZ4OQXxy-9htpnUi0sOYSr0kGGD1Loud", //required | Validate: ^(.*?){30,}$
+	//count: 5, //optional | Validate: ^[0-9]{1,2}$
+	//cursor: "<any>", //optional | Validate: ^[0-9]+$
+})
+```
+
+<details>
+<summary>Request</summary>
+
+**GET** /public/likes
+|Parameter|Location|Required|Description|
+|--|--|--|--|
+secUid|query|true|The user secUid
+count|query|false|
+cursor|query|false|
 </details>
 
 <h3 id="api-public-video">Video</h3>

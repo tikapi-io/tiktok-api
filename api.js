@@ -212,6 +212,26 @@ const endpoints = {
 				"hasMore": true
 			}
 		},
+		likes: {
+			help: "Get liked posts of an user",
+			path: "/public/likes",
+			params: {
+				secUid: {
+					required: true,
+					validate: "^(.*?){30,}$",
+					help: "The user secUid",
+					example: "MS4wLjABAAAAsHntXC3s0AvxcecggxsoVa4eAiT8OVafVZ4OQXxy-9htpnUi0sOYSr0kGGD1Loud"
+				},
+				count: {
+					example: 5,
+					default: 30,
+					validate: "^[0-9]{1,2}$"
+				},
+				cursor: {
+					validate: "^[0-9]+$"
+				}
+			},
+		},
 		video: {
 			path: "/public/video",
 			help: "Get a video information/ Download a video",
@@ -649,7 +669,7 @@ const endpoints = {
 		},
 
 		followers: {
-			help: "Get followers list",
+			help: "[Deprecated] Get followers list",
 			path: "/user/followers",
 			params: {
 				count: {
