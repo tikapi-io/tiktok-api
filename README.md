@@ -16,9 +16,17 @@ Get one at https://tikapi.io
 ```javascript
 const api = require("tikapi")("myApiKey");
 
-await api.public.user({
-	username: 'lilyachty'
-});
+(async () => {
+    try {
+        var user_information = await api.public.user({
+			username: 'lilyachty'
+		});
+        console.log(user_information);
+    } catch (error) {
+        console.log(error);
+    }
+})();
+
 ```
 
 ## Reference
