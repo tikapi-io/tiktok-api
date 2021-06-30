@@ -1719,10 +1719,11 @@ user.analytics.video({
 <details>
 <summary>Request</summary>
 
-**GET** /creator/analytics/videos
+**GET** /creator/analytics/video
 |Parameter|Location|Required|Description|
 |--|--|--|--|
 days|query|false|
+media_id|query|true|
 </details>
 
 <details>
