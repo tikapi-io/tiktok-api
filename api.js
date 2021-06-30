@@ -1307,11 +1307,25 @@ const endpoints = {
 				},
 				example_response: "{...}"
 			},
-			videos: {
-				path: "/creator/analytics/videos",
+			content: {
+				path: "/creator/analytics/content",
 				params: {
 					days: {
 						default: 7,
+						validate: "^[0-9]+$"
+					}
+				},
+				example_response: "{...}"
+			},
+			video: {
+				path: "/creator/analytics/video",
+				params: {
+					days: {
+						default: 7,
+						validate: "^[0-9]+$"
+					},
+					mediaId: {
+						required: true,
 						validate: "^[0-9]+$"
 					}
 				},

@@ -78,7 +78,8 @@ SDK And Documentation made with https://github.com/elis-k/wrape
 	- [search](#api-user-search)
 	- [analytics](#api-user-analytics)
 		- [overview](#api-user-analytics-overview)
-		- [videos](#api-user-analytics-videos)
+		- [content](#api-user-analytics-videos)
+		- [video](#api-user-analytics-video)
 		- [followers](#api-user-analytics-followers)
 		- [live](#api-user-analytics-live)
 
@@ -1681,10 +1682,36 @@ days|query|false|
 ```
 </details>
 
-<h4 id="api-user-analytics-videos">Videos</h4>
+<h4 id="api-user-analytics-videos">Content</h4>
 
 ```javascript
 user.analytics.videos({
+	//days: 7, //optional | Validate: ^[0-9]+$
+})
+```
+
+<details>
+<summary>Request</summary>
+
+**GET** /creator/analytics/videos
+|Parameter|Location|Required|Description|
+|--|--|--|--|
+days|query|false|
+</details>
+
+<details>
+<summary>Response</summary>
+
+```json
+{...}
+```
+</details>
+
+<h4 id="api-user-analytics-video">Video</h4>
+
+```javascript
+user.analytics.video({
+	mediaId: 690000000000000, //TikTok video ID | Required
 	//days: 7, //optional | Validate: ^[0-9]+$
 })
 ```
