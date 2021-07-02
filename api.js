@@ -335,9 +335,13 @@ const endpoints = {
 			path: "/public/hashtag",
 			params: {
 				id: {
-					required: true,
+					required: false,
 					validate: "^[0-9]+$",
 					help: "The hashtag ID"
+				},
+				name: {
+					required: false,
+					help: "The hashtag name"
 				},
 				count: {
 					default: 30,

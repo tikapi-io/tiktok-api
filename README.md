@@ -477,10 +477,13 @@ cursor|query|false|
 
 <h3 id="api-public-hashtag">Hashtag</h3>
 
-Get posts by hashtag ID (You can find it using Discover endpoint)
+Get posts by hashtag ID.
+
+Note: You can send the first request using the hashtag name ("name") then get the ID.
 ```javascript
 api.public.hashtag({
-	id: "<any>", //required | Validate: ^[0-9]+$
+	id: "<any>", //optional | Validate: ^[0-9]+$
+	name: "<any>", //optional
 	//count: 30, //optional | Validate: ^[0-9]{1,2}$
 	//cursor: "<any>", //optional | Validate: ^[0-9]+$
 })
