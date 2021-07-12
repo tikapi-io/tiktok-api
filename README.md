@@ -44,6 +44,7 @@ SDK And Documentation made with https://github.com/elis-k/wrape
 		- [music](#api-public-discover-music)
 		- [hashtags](#api-public-discover-hashtags)
 	- [hashtag](#api-public-hashtag)
+	- [music](#api-public-music)
 - [user](#api-user)
 	- [profile](#api-user-profile)
 		- [info](#api-user-profile-info)
@@ -495,7 +496,8 @@ api.public.hashtag({
 **GET** /public/hashtag
 |Parameter|Location|Required|Description|
 |--|--|--|--|
-id|query|true|The hashtag ID
+id|query|false|The hashtag ID
+mame|query|false|The hashtag name
 count|query|false|
 cursor|query|false|The starting point of items list
 </details>
@@ -636,6 +638,37 @@ cursor|query|false|The starting point of items list
 		"statusCode": 0
 	}
 }
+```
+</details>
+
+<h3 id="api-public-music">Music</h3>
+
+Get posts by music ID.
+
+```javascript
+api.public.music({
+	id: "6873925372153465606", //required | Validate: ^[0-9]+$
+	//count: 30, //optional | Validate: ^[0-9]{1,2}$
+	//cursor: "<any>", //optional | Validate: ^[0-9]+$
+})
+```
+
+<details>
+<summary>Request</summary>
+
+**GET** /public/music
+|Parameter|Location|Required|Description|
+|--|--|--|--|
+id|query|true|The hashtag ID
+count|query|false|
+cursor|query|false|The starting point of items list
+</details>
+
+<details>
+<summary>Response</summary>
+
+```json
+{}
 ```
 </details>
 

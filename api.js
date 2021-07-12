@@ -484,7 +484,26 @@ const endpoints = {
 				  "statusCode": 0
 				}
 			}
-		}
+		},
+		music: {
+			help: "Get posts by music ID",
+			path: "/public/music",
+			params: {
+				id: {
+					required: true,
+					validate: "^[0-9]+$",
+					help: "The music ID"
+				},
+				count: {
+					default: 30,
+					validate: "^[0-9]{1,2}$"
+				},
+				cursor: {
+					validate: "^[0-9]+$",
+					help: "The starting point of items list"
+				}
+			}
+		},
 	},
 
 	user: {
