@@ -64,6 +64,10 @@ const endpoints = {
 					example: 5,
 					default: 30,
 					validate: "^[0-9]{1,2}$"
+				},
+				country: {
+					required: false,
+					validate: "^[a-z]{,2}$"
 				}
 			}
 		},
@@ -268,6 +272,10 @@ const endpoints = {
 					},
 					cursor: {
 						validate: "^[0-9]+$"
+					},
+					country: {
+						required: false,
+						validate: "^[a-z]{,2}$"
 					}
 				}
 			},
@@ -283,6 +291,10 @@ const endpoints = {
 					},
 					cursor: {
 						validate: "^[0-9]+$"
+					},
+					country: {
+						required: false,
+						validate: "^[a-z]{,2}$"
 					}
 				},
 				example_response: {
@@ -323,6 +335,10 @@ const endpoints = {
 					},
 					cursor: {
 						validate: "^[0-9]+$"
+					},
+					country: {
+						required: false,
+						validate: "^[a-z]{,2}$"
 					}
 				},
 				example_response: {
@@ -350,6 +366,10 @@ const endpoints = {
 				cursor: {
 					validate: "^[0-9]+$",
 					help: "The starting point of items list"
+				},
+				country: {
+					required: false,
+					validate: "^[a-z]{,2}$"
 				}
 			},
 			example_response: {
@@ -501,6 +521,10 @@ const endpoints = {
 				cursor: {
 					validate: "^[0-9]+$",
 					help: "The starting point of items list"
+				},
+				country: {
+					required: false,
+					validate: "^[a-z]{,2}$"
 				}
 			}
 		},
@@ -1348,6 +1372,7 @@ const endpoints = {
 						validate: "^[0-9]+$"
 					},
 					mediaId: {
+						name: "media_id",
 						required: true,
 						validate: "^[0-9]+$"
 					}
