@@ -245,8 +245,7 @@ const endpoints = {
 				username: {
 					help: "The author username",
 					example: "lilyachty",
-					required: false,
-					required: true
+					required: false
 				},
 				download: {
 					help: "Set this to `1` to get a mp4 file",
