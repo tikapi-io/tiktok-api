@@ -10,7 +10,8 @@ const endpoints = {
 				username: {
 					required: true,
 					help: "The TikTok account username",
-					example: "lilyachty"
+					example: "lilyachty",
+					validate: "^([a-zA-Z0-9_\.]+|https?:\/\/vm.tiktok.com\/[a-zA-Z0-9]+\/?)$"
 				},
 				secUid: {
 					help: "The TikTok user secUid",
@@ -244,13 +245,12 @@ const endpoints = {
 					required: true,
 					help: "The video ID",
 					example: "6950501241915018501",
-					validate: "^[0-9]+$"
+					validate: "^([0-9]+|https?:\/\/vm.tiktok.com\/[a-zA-Z0-9]+\/?)$"
 				},
 				username: {
 					help: "The author username",
 					example: "lilyachty",
 					required: false,
-					required: true
 				},
 				download: {
 					help: "Set this to `1` to get a mp4 file",
@@ -352,7 +352,7 @@ const endpoints = {
 			params: {
 				id: {
 					required: false,
-					validate: "^[0-9]+$",
+					validate: "^([0-9]+|https?:\/\/vm.tiktok.com\/[a-zA-Z0-9]+\/?)$",
 					help: "The hashtag ID"
 				},
 				name: {
@@ -511,7 +511,7 @@ const endpoints = {
 			params: {
 				id: {
 					required: true,
-					validate: "^[0-9]+$",
+					validate: "^([0-9]+|https?:\/\/vm.tiktok.com\/[a-zA-Z0-9]+\/?)$",
 					help: "The music ID"
 				},
 				count: {
@@ -528,6 +528,21 @@ const endpoints = {
 				}
 			}
 		},
+		musicInfo: {
+			help: "Get music information",
+			path: "/public/music/info",
+			params: {
+				id: {
+					required: true,
+					validate: "^([0-9]+|https?:\/\/vm.tiktok.com\/[a-zA-Z0-9]+\/?)$",
+					help: "The music ID"
+				},
+				country: {
+					required: false,
+					validate: "^[a-z]{,2}$"
+				}
+			}
+		}
 	},
 
 	user: {
