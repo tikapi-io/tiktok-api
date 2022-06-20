@@ -2,9 +2,14 @@
 
 # dependencies
 /node_modules
+/lib
 /.pnp
 .pnp.js
 package-lock.json
+__pycache__
+/tikapi-python/__pycache__
+/tikapi-python/tikapi/test.py
+/tikapi-python/tikapi/__pycache__
 
 test.js
 # testing

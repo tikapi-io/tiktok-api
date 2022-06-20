@@ -1,0 +1,6 @@
+*
+!lib/*
+!typings/**/*
+!package.json
+!README.md
+!LICENSE

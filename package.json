@@ -1,10 +1,16 @@
 {
   "name": "tikapi",
-  "version": "2.0.6",
-  "description": "An fully managed unofficial TikTok app with OAuth capabilities",
-  "main": "api.js",
+  "version": "3.0.0",
+  "description": "A fully managed unofficial TikTok app with OAuth capabilities",
+  "main": "./lib/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run build:python && npm run build:types && tsc && node after_build.js",
+    "rests": "rests",
+    "build:types": "rests api.js -t",
+    "build:python": "rests api.js -p ./tikapi-python/tikapi/api.py --python_template ./tikapi-python/tikapi/template.py",
+    "tests": "echo \" no tests specified\"",
+    "prepublish": "npm run build && npm run tests && git add . && git commit -am \"publish v%npm_package_version%\" && git push"
   },
   "repository": {
     "type": "git",
@@ -37,6 +43,9 @@
   },
   "homepage": "https://github.com/tikapi-io/tiktok-api#readme",
   "dependencies": {
-    "wrape": "^1.2.7"
+    "rests": "file:../rests"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
   }
 }
