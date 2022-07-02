@@ -1,11 +1,18 @@
 {
     "compilerOptions": {
       "target": "es6",
-      "module": "commonjs",
+      "module": "ES2020",
       "declaration": true,
       "moduleResolution": "node",
-      "outDir": "./lib/",
-      "allowJs": true,
-      "checkJs": false
-    }
-  }
+    },
+    "exclude": [
+      "after_build.js",
+      "test.js",
+      "test.mjs",
+      "javascript-api/*",
+      "index.d.ts",
+      "index.js",
+      "api.d.ts",
+      "template.ts"
+    ]
+}

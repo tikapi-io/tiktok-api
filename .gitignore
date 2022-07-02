@@ -7,11 +7,19 @@
 .pnp.js
 package-lock.json
 __pycache__
-/tikapi-python/__pycache__
-/tikapi-python/tikapi/test.py
-/tikapi-python/tikapi/__pycache__
-
+/python-api/__pycache__
+/python-api/tikapi/test.py
+/python-api/tikapi/__pycache__
+/python-api/tikapi/template.py
+/python-api/tikapi/*.egg-info
+/python-api/dist
+*.egg-info
 test.js
+test.mjs
+template.ts
+index.d.ts
+index.js
+api.d.ts
 # testing
 /coverage
 

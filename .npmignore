@@ -1,5 +1,10 @@
 *
-!lib/*
+!api.js
+!api.d.ts
+!index.js
+!index.d.ts
+!code_samples.js
+!javascript-api/*
 !typings/**/*
 !package.json
 !README.md

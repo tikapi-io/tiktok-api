@@ -1,9 +1,5 @@
-from urllib import response
-from requests import request
 import requests
 from tikapi.api import Rests, APIException, ResponseException, ValidationException
-
-
 
 def TikAPI(apiKey: str):
 	if not isinstance(apiKey, str):
@@ -56,6 +52,10 @@ def TikAPI(apiKey: str):
 					'max_time': maxTime
 				}
 				 
+			elif body.get('nextCursor'):
+				nextCursorParams = {
+					'nextCursor': body.get('nextCursor')
+				}
 			else:
 				return None
 
@@ -64,13 +64,10 @@ def TikAPI(apiKey: str):
 				**nextCursorParams
 			})
 
-
 		setattr(response, 'next_items', next_items)
-			
-
 
 	def on_error(error, request:dict):
-		
+
 		if hasattr(error, 'response'):
 			message = str(error)
 
