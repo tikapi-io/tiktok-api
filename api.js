@@ -1,3 +1,6 @@
+/**
+ * The Types are automatically generated with Rests
+ */
 import Rests from "rests";
 import { 
 	jsCodeSample, 
@@ -5,6 +8,7 @@ import {
 	iterationCodeSamples,
 	hashtagCodeSamples
 } from "./code_samples.js";
+
 
 /**
  * Frequently Used Parameters Schemas
@@ -489,6 +493,26 @@ const API = Rests({
 				}
 			}
 		},
+		verify:{
+			help: "Check session",
+			comment: "Check if the current user's session is valid. Auto-removes the user if it's invalid. <br><br>*Note: The session is automatically checked, though you can still manually call this endpoint if you are having issues with a user.*",
+			path: "/user/session/check",
+			$other:{
+				openapi: {
+					fields:{
+						security: userSecurity(['view_profile']),
+						tags: [
+							"Profile"
+						],
+						responses:{
+							"428": {
+								"$ref": "./error_responses/428.yaml"
+							},
+						}
+					},
+				}
+			}
+		},
 		following: {
 			help: "Get following list",
 			comment: "Get current user's following list",
@@ -523,6 +547,10 @@ const API = Rests({
 					required: true,
 					example: 'lilyachty',
 				},
+				secUid:{
+					...p.secUid,
+					required: true
+				},
 				user_id: {
 					...p.user_id,
 					required: true,
@@ -551,6 +579,10 @@ const API = Rests({
 					...p.username,
 					required: true,
 					example: 'lilyachty'
+				},
+				secUid:{
+					...p.secUid,
+					required: true
 				},
 				user_id: {
 					...p.user_id,
@@ -594,7 +626,7 @@ const API = Rests({
 					openapi: {
 						...iterationCodeSamples('cursor'),
 						fields:{
-							security: userSecurity(['search']),
+							security: userSecurity(['explore']),
 						},
 					}
 				}
@@ -612,7 +644,7 @@ const API = Rests({
 					openapi: {
 						...iterationCodeSamples('cursor'),
 						fields:{
-							security: userSecurity(['search'])
+							security: userSecurity(['explore'])
 						}
 					}
 				}
@@ -627,7 +659,7 @@ const API = Rests({
 				$other:{
 					openapi: {
 						fields:{
-							security: userSecurity(['search']),
+							security: userSecurity(['explore']),
 						},
 					}
 				}
@@ -646,7 +678,7 @@ const API = Rests({
 				$other:{
 					openapi: {
 						fields:{
-							security: userSecurity(['search']),
+							security: userSecurity(['explore']),
 						},
 					}
 				}
@@ -1013,7 +1045,10 @@ const API = Rests({
 				},
 				$other:{
 					openapi:{
-						...iterationCodeSamples('nextCursor')
+						...iterationCodeSamples('nextCursor'),
+						fields:{
+							security: userSecurity(['live','send_messages']),
+						},
 					}
 				}
 			},

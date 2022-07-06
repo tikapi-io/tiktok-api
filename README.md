@@ -23,7 +23,3 @@ pip3 install tikapi
 
 ## Documentation
 https://www.tikapi.io/documentation/
-
-## Reference
-[Javascript Reference](./REFERENCE.md)
-
