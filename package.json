@@ -1,6 +1,6 @@
 {
   "name": "tikapi",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A fully managed unofficial TikTok app with OAuth capabilities",
   "main": "./index.js",
   "type": "module",
@@ -8,8 +8,7 @@
     "build": "npm run build-python && tsc && npm run build-types && node after_build.js",
     "build-types": "rests api.js -t ./api.d.ts --types_template ./template.ts",
     "build-python": "rests api.js -p ./python-api/tikapi/api.py --python_template ./python-api/tikapi/template.py",
-    "tests": "echo \" no tests specified\"",
-    "prepublish": "npm run build && npm run tests && git add . && git commit -am \"publish v%npm_package_version%\" && git push"
+    "tests": "echo \" no tests specified\""
   },
   "repository": {
     "type": "git",
