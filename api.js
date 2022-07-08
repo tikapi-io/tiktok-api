@@ -166,16 +166,16 @@ const API = Rests({
 		check: {
 			path: "/public/check",
 			help: "Get a user's profile information",
-			comment: "Get profile information and statistics from a username or secUid.",
+			comment: "Get profile information and statistics from a username or user_id.",
 			params: {
 				username: {
 					...p.username,
 					required: true,
 					example: 'lilyachty'	
 				},
-				secUid: {
-					...p.secUid,
-					help: "Optionally you can get the profile information using the secUid parameter."
+				user_id: {
+					...p.user_id,
+					help: "Optionally you can get the profile information using the user_id parameter."
 				}
 			},
 		},
