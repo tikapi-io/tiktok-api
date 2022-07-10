@@ -13,7 +13,7 @@ SDK & Documentation made with [Rests](https://github.com/el1s7/rests)
 Node.js
 
 ```bash
-npm i tikapi
+npm i tikapi@latest
 ```
 
 Python 3

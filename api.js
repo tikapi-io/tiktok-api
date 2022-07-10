@@ -707,7 +707,7 @@ const API = Rests({
 			unlike: {
 				help: "Unlike a video",
 				comment: specialBadge,
-				path: "/user/like",
+				path: "/user/unlike",
 				method: "POST",
 				enctype: "json",
 				params: {
@@ -1088,3 +1088,4 @@ const API = Rests({
 });
 
 export default API;
+

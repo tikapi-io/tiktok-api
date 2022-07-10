@@ -5,14 +5,7 @@
       "declaration": true,
       "moduleResolution": "node",
     },
-    "exclude": [
-      "after_build.js",
-      "test.js",
-      "test.mjs",
-      "javascript-api/*",
-      "index.d.ts",
-      "index.js",
-      "api.d.ts",
-      "template.ts"
+    "include": [
+      "index.ts"
     ]
 }
