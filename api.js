@@ -6,7 +6,8 @@ import {
 	jsCodeSample, 
 	pyCodeSample,
 	iterationCodeSamples,
-	hashtagCodeSamples
+	hashtagCodeSamples,
+	exploreCodeSamples
 } from "./code_samples.js";
 
 
@@ -188,8 +189,13 @@ const API = Rests({
 				session_id:{
 					type: "number",
 					max: 20,
-					example: 0,
+					example: '0',
 					help: "Longer sessions. The cookies and IP are preserved through different requests for a longer amount of time. You should include this in order to get different posts on every request."
+				}
+			},
+			$other:{
+				openapi: {
+					...exploreCodeSamples()
 				}
 			}
 		},
@@ -537,7 +543,7 @@ const API = Rests({
 		},
 		follow: {
 			help: "Follow an user",
-			comment: specialBadge,
+			comment: specialBadge + `<br>This endpoint is deprecated and might not work as excpeted.`,
 			path: "/user/follow",
 			method: "POST",
 			enctype: "json",
@@ -560,6 +566,7 @@ const API = Rests({
 			$other:{
 				openapi: {
 					fields:{
+						deprecated: true,
 						tags: [
 							"Followers"
 						],
@@ -570,7 +577,7 @@ const API = Rests({
 		},
 		unfollow: {
 			help: "Unfollows an user",
-			comment: specialBadge,
+			comment: specialBadge + `<br>This endpoint is deprecated and might not work as excpeted.`,
 			path: "/user/unfollow",
 			method: "POST",
 			enctype: "json",
@@ -593,6 +600,7 @@ const API = Rests({
 			$other:{
 				openapi: {
 					fields:{
+						deprecated: true,
 						tags: [
 							"Followers"
 						],

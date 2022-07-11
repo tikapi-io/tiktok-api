@@ -229,3 +229,72 @@ ${ident}print(e, e.response.status_code)
 		pyTemplate: pyCodeSample
 	}
 }
+
+
+/**
+ * Explore Code Samples
+ */
+export const exploreCodeSamples = ()=>{
+
+	const jsCodeSample = ({
+		packageName,
+		initsJs,
+		requestKey,
+		requestParamsJs
+	})=>{
+		initsJs[0] = `const api = TikAPI("myAPIKey");`;
+
+		return (
+`import TikAPI from '${packageName}';
+
+${initsJs.join('\n')}
+
+(async function(){
+${ident}try{
+${ident}${ident}let response = await api.public.explore({
+${ident}${ident}${ident}session_id: '0',
+${ident}${ident}${ident}country: 'us'
+${ident}${ident}});
+${ident}${ident}console.log(response.json);
+${ident}}
+${ident}catch(err){
+${ident}${ident}console.log(err?.statusCode, err?.message, err?.json)
+${ident}}	
+})();`
+);	
+};
+
+const pyCodeSample = ({
+	packageName,
+	initsPy,
+	requestKey,
+	requestParamsPy
+})=>{
+	initsPy[0] = `api = TikAPI("myAPIKey")`;
+
+	return (
+`from ${packageName} import TikAPI, ValidationException, ResponseException
+
+${initsPy.join('\n')}
+
+try:
+${ident}response = api.public.explore(
+${ident}${ident}session_id='0',
+${ident}${ident}country='us'
+${ident})
+
+${ident}print(response.json())
+
+except ValidationException as e:
+${ident}print(e, e.field)
+
+except ResponseException as e:
+${ident}print(e, e.response.status_code)
+`);
+};
+
+	return {
+		jsTemplate: jsCodeSample,
+		pyTemplate: pyCodeSample
+	}
+}
