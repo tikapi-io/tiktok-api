@@ -3,6 +3,7 @@
 !api.d.ts
 !index.js
 !index.d.ts
+!dist/*
 !code_samples.js
 !javascript-api/*
 !typings/**/*
