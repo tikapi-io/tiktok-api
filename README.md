@@ -25,11 +25,11 @@ pip3 install tikapi
 ## Usage
 
 ### Javascript
-Recommended
+ES6 Import Syntax is recommended
 ```javascript
 import TikAPI from 'tikapi';
 
-const api = TikAPI("myAPIKey")
+const api = TikAPI("myAPIKey");
 ```
 
 #### Common JS
@@ -37,7 +37,7 @@ Import it like this in Node with CommonJS to get the Intellisense Support & Type
 ```javascript
 const TikAPI = require('tikapi').default;
 
-const api = TikAPI("myAPIKey")
+const api = TikAPI("myAPIKey");
 ```
 
 ### Python
