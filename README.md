@@ -22,5 +22,33 @@ Python 3
 pip3 install tikapi
 ```
 
+## Usage
+
+### Javascript
+Recommended
+```javascript
+import TikAPI from 'tikapi';
+
+const api = TikAPI("myAPIKey")
+```
+
+#### Common JS
+Import it like this in Node with CommonJS to get the Intellisense Support & Types
+```javascript
+const TikAPI = require('tikapi').default;
+
+const api = TikAPI("myAPIKey")
+```
+
+### Python
+```python
+from tikapi import TikAPI
+
+api = TikAPI("myAPIKey")
+```
+
 ## Documentation
+
+Check out the documentation for full code samples on all endpoints
+
 https://www.tikapi.io/documentation/

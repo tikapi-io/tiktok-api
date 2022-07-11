@@ -1,13 +1,14 @@
 {
   "name": "tikapi",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "A fully managed unofficial TikTok app with OAuth capabilities",
-  "main": "./index.js",
+  "main": "./dist/index.cjs",
   "module": "./index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "npm run build-python && npm run build-js",
-    "build-js": "npm run build-types && tsc && node after_build.js",
+    "build-js": "npm run build-types && tsc && tsup index.ts --dts --clean && node after_build.js",
     "build-types": "rests api.js -t ./api.d.ts --types_template ./template.ts",
     "build-python": "rests api.js -p ./python-api/tikapi/api.py --python_template ./python-api/tikapi/template.py",
     "tests": "echo \" no tests specified\""
@@ -44,6 +45,7 @@
   "homepage": "https://tikapi.io",
   "devDependencies": {
     "https-proxy-agent": "^5.0.1",
+    "tsup": "^6.1.3",
     "typescript": "^4.7.4"
   },
   "dependencies": {

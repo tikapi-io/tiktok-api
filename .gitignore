@@ -14,6 +14,7 @@ __pycache__
 /python-api/tikapi/template.py
 /python-api/tikapi/*.egg-info
 /python-api/dist
+/dist
 *.egg-info
 test.js
 test.mjs

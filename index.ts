@@ -74,4 +74,10 @@ const TikAPI = (
     });
 }
 
+TikAPI.default = TikAPI;
+
+if(typeof module !== "undefined" && module.exports){
+    module.exports = TikAPI;
+}
+
 export default TikAPI;
