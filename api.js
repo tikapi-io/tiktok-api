@@ -275,7 +275,7 @@ const API = Rests({
 		},
 		hashtag: {
 			help: "Get hashtag posts",
-			comment: "Your first request should be using the hashtag `name` parameter, then the following requests should be using the `id` parameter which you have stored from the first request (returned in response as `challenge_id`).",
+			comment: "Your first request should be using the hashtag `name` parameter, then the following requests should be using the `id` parameter which you have stored from the first request (returned in response `challengeInfo > challenge > id`).",
 			path: "/public/hashtag",
 			params: {
 				id: {
