@@ -247,32 +247,6 @@ const API = Rests({
 				}
 			}
 		},
-		discover: {
-			help: "Discover users, music, hashtags",
-			comment: `You can also include *Account Key* to show personalized results for the user.<br/> The offset paramater might not work as excepted with a keyword. Try using the <a href='#tag/Public/operation/public.search'>Search</a> endpoint instead.`,
-			path: "/public/discover/{category}",
-			params: {
-				category: {
-					help: "The discover category",
-					example: "users",
-					in: ["users", "music", "hashtag"],
-					location: "path",
-					type: "string",
-					required: true
-				},
-				keyword: {
-					help: "Discover keyword is optional",
-					type: "string"
-				},
-				count: p.count,
-				offset: p.offset,
-			},
-			$other:{
-				openapi:{
-					...iterationCodeSamples('offset')
-				}
-			}
-		},
 		hashtag: {
 			help: "Get hashtag posts",
 			comment: "Your first request should be using the hashtag `name` parameter, then the following requests should be using the `id` parameter which you have stored from the first request (returned in response `challengeInfo > challenge > id`).",
@@ -323,6 +297,40 @@ const API = Rests({
 					required: true,
 					example: "28459463"
 				}
+			}
+		},
+		discover: {
+			help: "Discover users, music, hashtags",
+			comment: `Get popular users, music or hashtag. You can also include *Account Key* to show personalized results for the user.`,
+			path: "/public/discover/{category}",
+			params: {
+				category: {
+					help: "The discover category",
+					example: "users",
+					in: ["users", "music", "hashtag"],
+					location: "path",
+					type: "string",
+					required: true
+				},
+				count: p.count,
+				offset: p.offset,
+			},
+			$other:{
+				openapi:{
+					...iterationCodeSamples('offset')
+				}
+			}
+		},
+		discoverKeyword:{
+			help: "Discover by keyword",
+			comment: "Get popular posts, users, music or hashtags from a keyword. <br><br>Limited to only a few items. If you want more, try using the <a href='#tag/Public/operation/public.search'>Search</a> endpoint instead.",
+			path: "/public/discover/keyword",
+			params:{
+				keyword: {
+					required: true,
+					example: "lilyachty",
+					type: "string"
+				},
 			}
 		},
 		search:{
