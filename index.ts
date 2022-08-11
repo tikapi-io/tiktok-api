@@ -23,7 +23,7 @@ const TikAPI = (
             max_time?: string | number
         } = {};
 
-        if(res.json.hasMore){
+        if(res.json.hasMore || res.json.has_more){
             nextCursorParams.cursor = res.json.cursor;
             nextCursorParams.offset = res.json.cursor;
         }
