@@ -1,4 +1,4 @@
-# Unofficial TikTok API 
+# Unofficial TikTok API <img src='https://img.shields.io/npm/v/tikapi'> <img src='https://img.shields.io/pypi/v/tikapi'>
 
 A fully managed hassle-free TikTok API solution with OAuth capabilities. 
 
