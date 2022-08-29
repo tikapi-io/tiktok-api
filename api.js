@@ -171,7 +171,6 @@ const API = Rests({
 			params: {
 				username: {
 					...p.username,
-					required: true,
 					example: 'lilyachty'	
 				},
 				user_id: {
