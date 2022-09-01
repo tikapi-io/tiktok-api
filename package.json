@@ -1,6 +1,6 @@
 {
   "name": "tikapi",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "A fully managed unofficial TikTok app with OAuth capabilities",
   "main": "./dist/index.cjs",
   "module": "./index.js",

@@ -999,6 +999,14 @@ const API = Rests({
 					third_party: {
 						default: true,
 						help: "TikTok has a special gateway for invite only users. Only if this is enabled you can do third party streaming."
+					},
+					hashtag_id:{
+						help: "(Optional) The topic ID. You can find this by using the <a href='#tag/Live/operation/user.live.topics'>Get topics list</a> endpoint.",
+						type: "number"
+					},
+					game_tag_id:{
+						help: "(Optional) The sub-topic ID for gaming topics.",
+						type: "number"
 					}
 				}
 			},
@@ -1084,6 +1092,10 @@ const API = Rests({
 						example: "A mí me gusta"
 					}
 				}
+			},
+			topics:{
+				help: "Get live topics list",
+				path: "/user/live/topics"
 			}
 		},		
 	},
