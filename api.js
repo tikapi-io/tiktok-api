@@ -760,7 +760,10 @@ const API = Rests({
 							example: exampleVideoId
 						},
 						count: p.count,
-						cursor: p.cursor,
+						cursor: {
+							...p.cursor,
+							type: "number"
+						},
 					},
 					$other:{
 						openapi:{
@@ -783,7 +786,10 @@ const API = Rests({
 							example: exampleCommentId
 						},
 						count: p.count,
-						cursor: p.cursor
+						cursor: {
+							...p.cursor,
+							type: "number"
+						}
 					},
 					$other:{
 						openapi:{
