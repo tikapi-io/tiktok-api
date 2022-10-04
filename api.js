@@ -334,7 +334,7 @@ const API = Rests({
 		},
 		search:{
 			help: "Search",
-			comment: "Search anything, users, videos, or get keyword autocomplete suggestions. (You can include the X-Account-Key to get suggestions from the current user, <a href='https://helpdesk.tikapi.io/portal/en/kb/articles/get-user-search-suggestions' target='_blank'>see example</a>)",
+			comment: "Search anything, users, videos, or get keyword autocomplete suggestions.",
 			path: '/public/search/{category}',
 			params: {
 				category: {
