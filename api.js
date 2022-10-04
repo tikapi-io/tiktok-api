@@ -334,7 +334,7 @@ const API = Rests({
 		},
 		search:{
 			help: "Search",
-			comment: "Search TikTok anything, users, videos, or get keyword autocomplete suggestions.",
+			comment: "Search anything, users, videos, or get keyword autocomplete suggestions. (You can include the X-Account-Key to get suggestions from the current user, <a href='https://helpdesk.tikapi.io/portal/en/kb/articles/get-user-search-suggestions' target='_blank'>see example</a>)",
 			path: '/public/search/{category}',
 			params: {
 				category: {
@@ -351,7 +351,13 @@ const API = Rests({
 					required: true,
 					help: 'The search keyword'
 				},
-				cursor: p.offset
+				cursor: p.offset,
+				session_id:{
+					type: "number",
+					max: 20,
+					example: '0',
+					help: "The cookies and IP are preserved through different requests for a longer amount of time. You should use this if you want to keep the search suggestions the same."
+				}
 			},
 			$other:{
 				openapi:{
