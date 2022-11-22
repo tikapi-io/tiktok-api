@@ -1108,6 +1108,27 @@ const API = Rests({
 			topics:{
 				help: "Get live topics list",
 				path: "/user/live/topics"
+			},
+			transactionHistory:{
+				help: "Get coin transactions history",
+				path: "/user/wallet/transactions",
+				params:{
+					page:{
+						help: "The list page number",
+						example: 1
+					},
+					count:{
+						help: "The items limit per page",
+						example: 12
+					}
+				},
+				$other:{
+					openapi:{
+						fields:{
+							security: userSecurity(['view_profile']),
+						},
+					}
+				}
 			}
 		},		
 	},
