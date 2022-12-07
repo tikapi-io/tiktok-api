@@ -1,6 +1,5 @@
 import { HookRequest, ResponseObject } from "rests";
 import API from "./api.js";
-import fetch from 'node-fetch';
 import * as fs from 'fs/promises';
 
 const TikAPI = (
@@ -87,6 +86,8 @@ const TikAPI = (
                 }
             }
 			
+            const fetch = (await import("node-fetch")).default;
+
             return fetch(link, {
                 'method': 'GET',
                 'headers': headers,
