@@ -36,7 +36,32 @@ interface ResponseObject {
     /**
      * A convenient method to get the next batch of items, if the endpoint has iteration parameters (e.g cursor)
      */
-    nextItems?: ()=> Promise<any> | null
+    nextItems?: ()=> Promise<any> | null,
+
+	/**
+	 * A method for downloading and saving videos.
+	 */
+	saveVideo?: (
+		/**
+		 * The TikTok video link.
+		 * 
+		 * @example
+		 * `https://v19-webapp-prime.tiktok.com/video/tos/useast2a/tos-useast2a-ve-0068c001/oAbHZqfpLAdbgjckgQ8eGvSnib8VqfbDCICkZo...`
+		 */
+		link: string,
+
+		/**
+		 * The absolute local file save path.
+		 */
+
+		path: string,
+
+		/**
+		 * Optional Fetch options to configure the request (e.g. you can use this to set proxies by specifing the HTTP agent option)
+		 */
+
+		fetchOptions?: any
+	) => Promise<any>
 }
 
 type HookRequest = {
