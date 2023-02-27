@@ -252,7 +252,7 @@ ${initsJs.join('\n')}
 (async function(){
 ${ident}try{
 ${ident}${ident}let response = await api.public.explore({
-${ident}${ident}${ident}session_id: '0',
+${ident}${ident}${ident}session_id: 0,
 ${ident}${ident}${ident}country: 'us'
 ${ident}${ident}});
 ${ident}${ident}console.log(response.json);

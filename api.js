@@ -73,6 +73,10 @@ const p = {
 		help: "The Live room ID. You can find this using the <a href='#tag/Public/operation/public.check'>Get profile information</a> endpoint.",
 		type: "string",
 		example: "7112492061034646278"
+	},
+	nextCursor: {
+		type: "string",
+		help: "A iteration parameter returned in each response, should be included in the next requests to get the next items."
 	}
 };
 
@@ -167,28 +171,34 @@ const API = Rests({
 		check: {
 			path: "/public/check",
 			help: "Get a user's profile information",
-			comment: "Get profile information and statistics from a username or user_id.",
+			comment: "Get profile information and statistics from a username.",
 			params: {
 				username: {
 					...p.username,
-					example: 'lilyachty'	
+					example: 'lilyachty',
 				},
 				user_id: {
 					...p.user_id,
 					help: "Optionally you can get the profile information using the user_id parameter."
 				}
 			},
+			$other:{
+				openapi:{
+					hideParams: ['user_id'],
+					showExamplesInCode: ['username']
+				}
+			}
 		},
 		explore: {
 			help: "Get trending posts",
-			comment: "Get a list of recommended posts from the *For You* section.",
+			comment: "Get a list of recommended posts from the *For You* section. <br/>" + videoLink,
 			path: "/public/explore",
 			params: {
 				count: p.count,
 				session_id:{
 					type: "number",
 					max: 20,
-					example: '0',
+					example: 0,
 					help: "Longer sessions. The cookies and IP are preserved through different requests for a longer amount of time. You should include this in order to get different posts on every request."
 				}
 			},
@@ -201,6 +211,7 @@ const API = Rests({
 		posts: {
 			help: "Get a user's feed posts",
 			path: "/public/posts",
+			comment: videoLink,
 			params: {
 				secUid: {
 					...p.secUid,
@@ -219,6 +230,7 @@ const API = Rests({
 		likes: {
 			help: "Get a user's liked posts",
 			path: "/public/likes",
+			comment: videoLink,
 			params: {
 				secUid: {
 					...p.secUid,
@@ -248,7 +260,7 @@ const API = Rests({
 		},
 		hashtag: {
 			help: "Get hashtag posts",
-			comment: "Your first request should be using the hashtag `name` parameter, then the following requests should be using the `id` parameter which you have stored from the first request (returned in response `challengeInfo > challenge > id`).",
+			comment: "Your first request should be using the hashtag `name` parameter, then the following requests should be using the `id` parameter which you have stored from the first request (returned in response `challengeInfo > challenge > id`). <br/>" + videoLink,
 			path: "/public/hashtag",
 			params: {
 				id: {
@@ -270,7 +282,7 @@ const API = Rests({
 		},
 		music: {
 			help: "Get music posts",
-			comment: "Get a list of posts that are using this music",
+			comment: "Get a list of posts that are using this music. <br/>" + videoLink,
 			path: "/public/music",
 			params: {
 				id: {
@@ -334,7 +346,7 @@ const API = Rests({
 		},
 		search:{
 			help: "Search",
-			comment: "Search anything, users, videos, or get keyword autocomplete suggestions.",
+			comment: "Search anything, users, videos, or get keyword autocomplete suggestions. <br/>" + videoLink,
 			path: '/public/search/{category}',
 			params: {
 				category: {
@@ -355,13 +367,51 @@ const API = Rests({
 				session_id:{
 					type: "number",
 					max: 20,
-					example: '0',
+					example: 0,
 					help: "The cookies and IP are preserved through different requests for a longer amount of time. You should use this if you want to keep the search suggestions the same."
 				}
 			},
 			$other:{
 				openapi:{
 					...iterationCodeSamples('cursor')
+				}
+			}
+		},
+		followersList:{
+			help: "Get followers list",
+			comment: "Get followers list of any public profile.",
+			path: "/public/followers",
+			params: {
+				secUid: {
+					...p.secUid,
+					required: true,
+					example: exampleSecUid
+				},
+				count: p.count,
+				nextCursor: p.nextCursor
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('nextCursor')
+				}
+			}
+		},
+		followingList:{
+			help: "Get following list",
+			comment: "Get following list of any public profile.",
+			path: "/public/following",
+			params: {
+				secUid: {
+					...p.secUid,
+					required: true,
+					example: exampleSecUid
+				},
+				count: p.count,
+				nextCursor: p.nextCursor
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('nextCursor')
 				}
 			}
 		}
