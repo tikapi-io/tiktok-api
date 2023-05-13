@@ -189,25 +189,6 @@ const API = Rests({
 				}
 			}
 		},
-		explore: {
-			help: "Get trending posts",
-			comment: "Get a list of recommended posts from the *For You* section. <br/>" + videoLink,
-			path: "/public/explore",
-			params: {
-				count: p.count,
-				session_id:{
-					type: "number",
-					max: 20,
-					example: 0,
-					help: "Longer sessions. The cookies and IP are preserved through different requests for a longer amount of time. You should include this in order to get different posts on every request."
-				}
-			},
-			$other:{
-				openapi: {
-					...exploreCodeSamples()
-				}
-			}
-		},
 		posts: {
 			help: "Get a user's feed posts",
 			path: "/public/posts",
@@ -243,6 +224,63 @@ const API = Rests({
 			$other:{
 				openapi: {
 					...iterationCodeSamples('cursor')
+				}
+			}
+		},
+		followersList:{
+			help: "Get a user's followers list",
+			comment: "Get followers list of any public profile.",
+			path: "/public/followers",
+			params: {
+				secUid: {
+					...p.secUid,
+					required: true,
+					example: exampleSecUid
+				},
+				count: p.count,
+				nextCursor: p.nextCursor
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('nextCursor')
+				}
+			}
+		},
+		followingList:{
+			help: "Get a user's following list",
+			comment: "Get following list of any public profile.",
+			path: "/public/following",
+			params: {
+				secUid: {
+					...p.secUid,
+					required: true,
+					example: exampleSecUid
+				},
+				count: p.count,
+				nextCursor: p.nextCursor
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('nextCursor')
+				}
+			}
+		},
+		explore: {
+			help: "Get trending posts",
+			comment: "Get a list of recommended posts from the *For You* section. <br/>" + videoLink,
+			path: "/public/explore",
+			params: {
+				count: p.count,
+				session_id:{
+					type: "number",
+					max: 100,
+					example: 0,
+					help: "Longer sessions. The cookies and IP are preserved through different requests for a longer amount of time. You should include this in order to get different posts on every request."
+				}
+			},
+			$other:{
+				openapi: {
+					...exploreCodeSamples()
 				}
 			}
 		},
@@ -366,7 +404,7 @@ const API = Rests({
 				cursor: p.offset,
 				session_id:{
 					type: "number",
-					max: 20,
+					max: 100,
 					example: 0,
 					help: "The cookies and IP are preserved through different requests for a longer amount of time. You should use this if you want to keep the search suggestions the same."
 				}
@@ -374,44 +412,6 @@ const API = Rests({
 			$other:{
 				openapi:{
 					...iterationCodeSamples('cursor')
-				}
-			}
-		},
-		followersList:{
-			help: "Get followers list",
-			comment: "Get followers list of any public profile.",
-			path: "/public/followers",
-			params: {
-				secUid: {
-					...p.secUid,
-					required: true,
-					example: exampleSecUid
-				},
-				count: p.count,
-				nextCursor: p.nextCursor
-			},
-			$other:{
-				openapi: {
-					...iterationCodeSamples('nextCursor')
-				}
-			}
-		},
-		followingList:{
-			help: "Get following list",
-			comment: "Get following list of any public profile.",
-			path: "/public/following",
-			params: {
-				secUid: {
-					...p.secUid,
-					required: true,
-					example: exampleSecUid
-				},
-				count: p.count,
-				nextCursor: p.nextCursor
-			},
-			$other:{
-				openapi: {
-					...iterationCodeSamples('nextCursor')
 				}
 			}
 		}
