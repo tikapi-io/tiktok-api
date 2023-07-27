@@ -156,6 +156,12 @@ const API = Rests({
 					is being sent by providing an ISO Code (e.g us, ca, gb) — 200+ countries supported`,
 					location: "query",
 					example: "us"
+				},
+				session_id:{
+					type: "number",
+					max: 100,
+					example: 0,
+					help: "(Optional) Longer sessions. The cookies and IP are preserved through different requests for a longer amount of time. You should include this in order to get different posts on every request."
 				}
 			},
 			$other:{
@@ -184,7 +190,7 @@ const API = Rests({
 			},
 			$other:{
 				openapi:{
-					hideParams: ['user_id'],
+					hideParams: ['user_id', 'session_id'],
 					showExamplesInCode: ['username']
 				}
 			}
@@ -204,7 +210,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
-					...iterationCodeSamples('cursor')
+					...iterationCodeSamples('cursor'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -223,7 +230,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
-					...iterationCodeSamples('cursor')
+					...iterationCodeSamples('cursor'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -242,7 +250,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
-					...iterationCodeSamples('nextCursor')
+					...iterationCodeSamples('nextCursor'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -261,7 +270,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
-					...iterationCodeSamples('nextCursor')
+					...iterationCodeSamples('nextCursor'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -271,16 +281,12 @@ const API = Rests({
 			path: "/public/explore",
 			params: {
 				count: p.count,
-				session_id:{
-					type: "number",
-					max: 100,
-					example: 0,
-					help: "Longer sessions. The cookies and IP are preserved through different requests for a longer amount of time. You should include this in order to get different posts on every request."
-				}
+				
 			},
 			$other:{
 				openapi: {
-					...exploreCodeSamples()
+					...exploreCodeSamples(),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -293,6 +299,112 @@ const API = Rests({
 					...p.videoId,
 					required: true,
 					example: exampleVideoId
+				}
+			},
+			$other:{
+				openapi: {
+					hideParams: ['session_id']
+				}
+			}
+		},
+		relatedPosts: {
+			path: "/public/related_posts",
+			help: "Get related posts",
+			comment: videoLink,
+			params: {
+				video_id: {
+					...p.videoId,
+					help: "The video ID from which to get related posts. Can also be a short TikTok link (e.g. vm.tiktok.com/UwU)",
+					required: true,
+					example: exampleVideoId
+				}
+			},
+			$other:{
+				openapi: {
+					hideParams: ['session_id'],
+					fields: {
+						'x-new': true
+					}
+				}
+			}
+		},
+		playlists: {
+			path: "/public/playlists",
+			help: "Get an user playlists",
+			params: {
+				secUid: {
+					...p.secUid,
+					required: true,
+					example: exampleSecUid
+				},
+				count: p.count,
+				cursor: p.cursor,
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('cursor'),
+					hideParams: ['session_id'],
+					fields: {
+						'x-new': true
+					}
+				}
+			}
+		},
+		playlistItems: {
+			path: "/public/playlist/items",
+			help: "Get a playlist items",
+			params: {
+				playlist_id: {
+					validate: "^[0-9]+$",
+					required: true,
+					example: "6948562344666532614",
+					help: "The playlist ID."
+				},
+				count: p.count,
+				cursor: p.cursor,
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('cursor'),
+					hideParams: ['session_id'],
+					fields: {
+						'x-new': true
+					}
+				}
+			}
+		},
+		exploreCategory: {
+			path: "/public/explore/category",
+			help: "Get explore posts by category",
+			comment: `The following categories are supported:<br/><br/>
+			"Comedy & Drama": 1,<br/>
+			"Dance & Music": 2,<br/>
+			"Relationships": 3,<br/>
+			"Nature & Pets": 4,<br/>
+			"Lifestyle": 5,<br/>
+			"Society": 6,<br/>
+			"Fashion": 7,<br/>
+			"Entertainment": 8,<br/>
+			"Informative": 10,<br/>
+			"Sports & Outdoors": 11,<br/>
+			"Auto & Vehicle": 12,`,
+			params: {
+				category_id: {
+					validate: "^[0-9]+$",
+					required: true,
+					example: "1",
+					help: "The category ID."
+				},
+				count: p.count,
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('cursor'),
+					hide: true,
+					fields: {
+						'x-new': true,
+						'x-beta': true,
+					}
 				}
 			}
 		},
@@ -314,7 +426,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
-					...hashtagCodeSamples('cursor')
+					...hashtagCodeSamples('cursor'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -333,7 +446,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
-					...iterationCodeSamples('cursor')
+					...iterationCodeSamples('cursor'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -346,8 +460,15 @@ const API = Rests({
 					required: true,
 					example: "28459463"
 				}
+			},
+			$other:{
+				openapi: {
+					hideParams: ['session_id']
+				}
 			}
 		},
+
+		
 		discover: {
 			help: "Discover users, music, hashtags",
 			comment: `Get popular users, music or hashtag. You can also include *Account Key* to show personalized results for the user.`,
@@ -366,7 +487,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi:{
-					...iterationCodeSamples('offset')
+					...iterationCodeSamples('offset'),
+					hideParams: ['session_id']
 				}
 			}
 		},
@@ -380,6 +502,11 @@ const API = Rests({
 					example: "lilyachty",
 					type: "string"
 				},
+			},
+			$other:{
+				openapi:{
+					hideParams: ['session_id']
+				}
 			}
 		},
 		search:{
@@ -411,7 +538,8 @@ const API = Rests({
 			},
 			$other:{
 				openapi:{
-					...iterationCodeSamples('cursor')
+					...iterationCodeSamples('cursor'),
+					hideParams: ['session_id']
 				}
 			}
 		}
@@ -517,7 +645,7 @@ const API = Rests({
 				openapi: {
 					...iterationCodeSamples('min_time'),
 					fields:{
-						security: userSecurity(['view_profile']),
+						security: userSecurity(['view_notifications']),
 						tags: [
 							"Profile"
 						],
@@ -541,7 +669,7 @@ const API = Rests({
 				},
 				days:{
 					default: 7,
-					help: "The days time frame of analytics data",
+					help: "The days time frame for the analytics data",
 					validate: "^[0-9]+$",
 					type: "number"
 				},
@@ -582,10 +710,10 @@ const API = Rests({
 				}
 			}
 		},
-		following: {
+		followingV1: {
 			help: "Get following list",
 			comment: "Get current user's following list",
-			path: "/user/following",
+			path: "/user/following/v1",
 			params: {
 				count: p.count,
 				cursor: {
@@ -595,11 +723,60 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
+					hide: true,
 					fields:{
 						tags: [
 							"Followers"
 						],
-						security: userSecurity(['view_profile']),
+						security: userSecurity(['view_followers']),
+					},
+				}
+			}
+		},
+		following:{
+			help: "Get following list",
+			comment: "Get current user following list (or a friends by specifying the secUid).",
+			path: "/user/following",
+			params: {
+				secUid: {
+					...p.secUid,
+					example: exampleSecUid
+				},
+				count: p.count,
+				nextCursor: p.nextCursor
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('nextCursor'),
+					fields:{
+						tags: [
+							"Followers"
+						],
+						security: userSecurity(['view_followers']),
+					},
+				}
+			}
+		},
+		followers:{
+			help: "Get followers list",
+			comment: "Get current user followers list (or a friends by specifying the secUid).",
+			path: "/user/followers",
+			params: {
+				secUid: {
+					...p.secUid,
+					example: exampleSecUid
+				},
+				count: p.count,
+				nextCursor: p.nextCursor
+			},
+			$other:{
+				openapi: {
+					...iterationCodeSamples('nextCursor'),
+					fields:{
+						tags: [
+							"Followers"
+						],
+						security: userSecurity(['view_followers']),
 					},
 				}
 			}
@@ -628,6 +805,7 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
+					hide: true,
 					fields:{
 						deprecated: true,
 						tags: [
@@ -662,6 +840,7 @@ const API = Rests({
 			},
 			$other:{
 				openapi: {
+					hide: true,
 					fields:{
 						deprecated: true,
 						tags: [
@@ -716,6 +895,106 @@ const API = Rests({
 						...iterationCodeSamples('cursor'),
 						fields:{
 							security: userSecurity(['explore'])
+						}
+					}
+				}
+			},
+			followingPosts: {
+				path: "/user/following_posts",
+				help: "Get following posts",
+				comment: videoLink,
+				params: {
+					count: p.count,
+					cursor: p.cursor,
+				},
+				$other:{
+					openapi: {
+						fields: {
+							'x-new': true,
+							security: userSecurity(['explore'])
+						}
+					}
+				}
+			},
+			relatedPosts: {
+				path: "/user/related_posts",
+				help: "Get related posts",
+				comment: videoLink,
+				params: {
+					video_id: {
+						...p.videoId,
+						help: "The video ID from which to get related posts. Can also be a short TikTok link (e.g. vm.tiktok.com/UwU)",
+						required: true,
+						example: exampleVideoId
+					}
+				},
+				$other:{
+					openapi: {
+						fields: {
+							'x-new': true,
+							security: userSecurity(['explore'])
+						}
+					}
+				}
+			},
+			savedPosts: {
+				path: "/user/saved",
+				help: "Get saved posts",
+				comment: videoLink,
+				params: {
+					count: p.count,
+					cursor: p.cursor,
+				},
+				$other:{
+					openapi: {
+						fields: {
+							'x-new': true,
+							security: userSecurity(['view_collections'])
+						}
+					}
+				}
+			},
+			playlists: {
+				path: "/user/playlists",
+				help: "Get user playlists",
+				params: {
+					secUid: {
+						...p.secUid,
+						required: false,
+						example: exampleSecUid
+					},
+					count: p.count,
+					cursor: p.cursor,
+				},
+				$other:{
+					openapi: {
+						...iterationCodeSamples('cursor'),
+						fields: {
+							'x-new': true,
+							security: userSecurity(['view_collections'])
+						}
+					}
+				}
+			},
+			playlistItems: {
+				path: "/user/playlist/items",
+				help: "Get a playlist items",
+				params: {
+					playlist_id: {
+						validate: "^[0-9]+$",
+						required: true,
+						example: "6948562344666532614",
+						help: "The playlist ID."
+					},
+					count: p.count,
+					cursor: p.cursor,
+				},
+				$other:{
+					openapi: {
+						...iterationCodeSamples('cursor'),
+						fields: {
+							'x-new': true,
+							security: userSecurity(['view_collections'])
 						}
 					}
 				}
@@ -1027,6 +1306,114 @@ const API = Rests({
 				}
 			}
 		},
+
+		conversationRequests: {
+			$options:{
+				$other:{
+					openapi: {
+						fields:{
+							tags: [
+								"Messages"
+							],
+							security: userSecurity(['conversation_requests']),
+							'x-new': true,
+						},
+					}
+				}
+			},
+			conversations: {
+				path: '/user/conversations/requests',
+				help: "Get user conversation requests",
+				comment: premiumBadge + "Get a list of current user conversations requests including the latest message.",
+				params: {
+					nextCursor: p.offset
+				},
+				$other:{
+					openapi: {
+						...iterationCodeSamples('nextCursor'),
+					}
+				}
+			},
+			messages: {
+				path: '/user/messages/requests',
+				help: "Get a conversation request messages",
+				comment: premiumBadge + "Get the messages of a conversation in the requests tab (generally there is a 3 message limit).",
+				params: {
+					conversation_id: {
+						help: "The conversation ID",
+						required: true,
+						example: "0:1:684574219823284956:69402435203845897564"
+					},
+					conversation_short_id: {
+						help: "The additional conversation short ID",
+						required: true,
+						example: "6940245147502654884"
+					}
+				}
+			},
+			markRead: {
+				path: '/user/conversations/requests/mark_read',
+				help: "Mark a requests conversation as read",
+				comment: premiumBadge,
+				params: {
+					conversation_id: {
+						help: "The conversation ID",
+						required: true,
+						example: "0:1:684574219823284956:69402435203845897564"
+					},
+					conversation_short_id: {
+						help: "The additional conversation short ID",
+						required: true,
+						example: "6940245147502654884"
+					}
+				},
+				$other:{
+					openapi: {
+						hide: true
+					}
+				}
+			},
+			delete: {
+				path: '/user/conversations/requests/delete',
+				help: "Delete a conversation request",
+				comment: premiumBadge,
+				params: {
+					conversation_id: {
+						help: "The conversation ID",
+						required: true,
+						example: "0:1:684574219823284956:69402435203845897564"
+					},
+					conversation_short_id: {
+						help: "The additional conversation short ID",
+						required: true,
+						example: "6940245147502654884"
+					}
+				}
+			},
+			accept: {
+				path: '/user/conversations/requests/accept',
+				help: "Accept a conversation request",
+				comment: premiumBadge,
+				params: {
+					conversation_id: {
+						help: "The conversation ID",
+						required: true,
+						example: "0:1:684574219823284956:69402435203845897564"
+					},
+					conversation_short_id: {
+						help: "The additional conversation short ID",
+						required: true,
+						example: "6940245147502654884"
+					},
+					user_id: {
+						...p.user_id,
+						help: "The sender ID.",
+						required: true,
+						example: "6569595380449902597"
+					}
+				}
+			},
+		},
 		live: {
 			$options:{
 				$other:{
@@ -1175,11 +1562,92 @@ const API = Rests({
 				$other:{
 					openapi:{
 						fields:{
-							security: userSecurity(['view_profile']),
+							security: userSecurity(['view_coins']),
 						},
 					}
 				}
-			}
+			},
+			search:{
+				help: "Search live videos",
+				path: "/user/search/live",
+				params:{
+					query:{
+						type: 'string',
+						example: "lilyachty",
+						required: true,
+						help: 'The search keyword'
+					},
+					cursor: p.offset,
+				},
+				$other:{
+					openapi:{
+						fields:{
+							...iterationCodeSamples('cursor'),
+							'x-new': true
+						},
+					}
+				}
+			},
+			analytics:{
+				help: "Get live analytics",
+				path: "/user/live/analytics",
+				params:{
+					days:{
+						default: 7,
+						help: "The days time frame for the analytics data",
+						validate: "^[0-9]+$",
+						type: "number"
+					},
+				},
+				$other:{
+					openapi:{
+						fields:{
+							'x-new': true,
+							security: userSecurity(['view_analytics']),
+						},
+					}
+				}
+			},
+			list:{
+				help: "Get live videos list",
+				path: "/user/live/list",
+				params:{
+					count: p.count,
+					offset: p.offset,
+					sort: {
+						help: "Sort results by ascending (1) or descending (0). Default is descending (0).",
+						in: [0, 1],
+						default: 0,
+						type: "number",
+						example: 1
+					}
+				},
+				$other:{
+					openapi:{
+						fields:{
+							'x-new': true
+						},
+					}
+				}
+			},
+			details:{
+				help: "Get a live video details",
+				path: "/user/live/detail",
+				params:{
+					room_id: {
+						...p.roomId,
+						help: "The Live room ID.",
+						required: true
+					}
+				},
+				$other:{
+					openapi:{
+						fields:{
+							'x-new': true
+						},
+					}
+				}
+			},
 		},		
 	},
 	key: {
