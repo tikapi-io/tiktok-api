@@ -330,7 +330,7 @@ const API = Rests({
 		},
 		playlists: {
 			path: "/public/playlists",
-			help: "Get an user playlists",
+			help: "Get a user's playlists",
 			params: {
 				secUid: {
 					...p.secUid,
@@ -782,7 +782,7 @@ const API = Rests({
 			}
 		},
 		follow: {
-			help: "Follow an user",
+			help: "Follow a user",
 			comment: specialBadge + `<br>This endpoint is deprecated and might not work as excpeted.`,
 			path: "/user/follow",
 			method: "POST",
@@ -817,7 +817,7 @@ const API = Rests({
 			}
 		},
 		unfollow: {
-			help: "Unfollows an user",
+			help: "Unfollow a user",
 			comment: specialBadge + `<br>This endpoint is deprecated and might not work as excpeted.`,
 			path: "/user/unfollow",
 			method: "POST",
