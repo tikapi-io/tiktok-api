@@ -206,12 +206,13 @@ const API = Rests({
 					example: exampleSecUid
 				},
 				count: p.count,
-				cursor: p.cursor
+				cursor: p.cursor,
+				user_id: p.user_id
 			},
 			$other:{
 				openapi: {
 					...iterationCodeSamples('cursor'),
-					hideParams: ['session_id']
+					hideParams: ['session_id', 'user_id']
 				}
 			}
 		},
@@ -911,7 +912,8 @@ const API = Rests({
 				params: {
 					count: p.count,
 					cursor: p.cursor,
-					secUid: p.secUid
+					secUid: p.secUid,
+					user_id: p.user_id
 				},
 				$other:{
 					openapi: {
@@ -919,6 +921,7 @@ const API = Rests({
 						fields:{
 							security: userSecurity(['explore']),
 						},
+						hideParams: ['user_id']
 					}
 				}
 			},
