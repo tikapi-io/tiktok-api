@@ -307,6 +307,47 @@ const API = Rests({
 				}
 			}
 		},
+		videoV2: {
+			path: "/public/video/v2",
+			help: "Get video information (alternative endpoint)",
+			comment: videoLink,
+			params: {
+				id: {
+					...p.videoId,
+					required: true,
+					example: exampleVideoId
+				}
+			},
+			$other:{
+				openapi: {
+					hide: true,
+					hideParams: ['session_id']
+				}
+			}
+		},
+		videoV3: {
+			path: "/public/video/v3",
+			help: "Get video information (alternative endpoint)",
+			comment: videoLink,
+			params: {
+				id: {
+					...p.videoId,
+					required: true,
+					example: exampleVideoId
+				},
+				username: {
+					...p.username,
+					required: true,
+					help: "The username of the video author."
+				}
+			},
+			$other:{
+				openapi: {
+					hide: true,
+					hideParams: ['session_id']
+				}
+			}
+		},
 		relatedPosts: {
 			path: "/public/related_posts",
 			help: "Get related posts",
@@ -528,7 +569,7 @@ const API = Rests({
 					required: true,
 					help: 'The search keyword'
 				},
-				cursor: p.offset,
+				nextCursor: p.nextCursor,
 				session_id:{
 					type: "number",
 					max: 100,
@@ -538,7 +579,7 @@ const API = Rests({
 			},
 			$other:{
 				openapi:{
-					...iterationCodeSamples('cursor'),
+					...iterationCodeSamples('nextCursor'),
 					hideParams: ['session_id']
 				}
 			}
@@ -681,7 +722,7 @@ const API = Rests({
 			$other:{
 				openapi: {
 					fields:{
-						security: userSecurity(['view_profile']),
+						security: userSecurity(['view_analytics']),
 						tags: [
 							"Profile"
 						],

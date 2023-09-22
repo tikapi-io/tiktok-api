@@ -29,8 +29,15 @@ const TikAPI = (
             } = {};
 
             if(res.json.hasMore || res.json.has_more){
-                nextCursorParams.cursor = res.json.cursor;
-                nextCursorParams.offset = res.json.cursor;
+
+                let currentCursorField = (res.json?.cursor || res.json?.offset || res.json?.nextCursor);
+
+                nextCursorParams = {
+                    ...nextCursorParams,
+                    cursor: currentCursorField,
+                    offset: currentCursorField,
+                    nextCursor: currentCursorField
+                }
             }
 
             if(res.json.notice_lists){
