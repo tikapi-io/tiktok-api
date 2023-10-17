@@ -83,6 +83,7 @@ const p = {
 const exampleSecUid = 'MS4wLjABAAAAsHntXC3s0AvxcecggxsoVa4eAiT8OVafVZ4OQXxy-9htpnUi0sOYSr0kGGD1Loud';
 const exampleUid = '6569595380449902597';
 const exampleVideoId = '7109178205151464746';
+const exampleVideoIdMoreParameters = '7003402629929913605';
 const exampleCommentId = '7109185042560680750';
 
 const premiumBadge = `**Premium**<img title='Only Business and Enterprise subscriptions can access this
@@ -299,7 +300,7 @@ const API = Rests({
 				id: {
 					...p.videoId,
 					required: true,
-					example: exampleVideoId
+					example: exampleVideoIdMoreParameters
 				}
 			},
 			$other:{
@@ -1058,6 +1059,36 @@ const API = Rests({
 					}
 				}
 			},
+			search:{
+				help: "Search",
+				comment: "Search anything, users, videos, or get keyword autocomplete suggestions. Using this instead of the Public Search endpoint will give you more personalized and consistent results. <br/>" + videoLink,
+				path: '/user/search/{category}',
+				params: {
+					category: {
+						help: "The search category",
+						in: ["general", "users", "videos", "autocomplete"],
+						required: true,
+						type: "string",
+						example: "general",
+						location: "path"
+					},
+					query:{
+						type: 'string',
+						example: "lilyachty",
+						required: true,
+						help: 'The search keyword'
+					},
+					nextCursor: p.nextCursor,
+				},
+				$other:{
+					openapi:{
+						...iterationCodeSamples('nextCursor'),
+						fields:{
+							security: userSecurity(['explore']),
+						},
+					}
+				}
+			},
 			video: {
 				help: "Get video information",
 				comment: videoLink,
@@ -1066,7 +1097,7 @@ const API = Rests({
 					id: {
 						...p.videoId,
 						required: true,
-						example: exampleVideoId
+						example: exampleVideoIdMoreParameters
 					}
 				},
 				$other:{
