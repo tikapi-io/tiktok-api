@@ -474,6 +474,53 @@ const API = Rests({
 				}
 			}
 		},
+		commentsList: {
+			help: "Get a video comments list",
+			path: "/public/comment/list",
+			params: {
+				media_id: {
+					...p.videoId,
+					required: true,
+					example: exampleVideoId
+				},
+				count: p.count,
+				cursor: {
+					...p.cursor,
+					type: "number"
+				},
+			},
+			$other:{
+				openapi:{
+					...iterationCodeSamples('cursor')
+				}
+			}
+		},
+		commentRepliesList: {
+			help: "Get a comment replies list",
+			path: "/public/comment/reply/list",
+			params: {
+				media_id: {
+					...p.videoId,
+					required: true,
+					example: exampleVideoId
+				},
+				comment_id: {
+					...p.commentId,
+					required: true,
+					example: exampleCommentId
+				},
+				count: p.count,
+				cursor: {
+					...p.cursor,
+					type: "number"
+				}
+			},
+			$other:{
+				openapi:{
+					...iterationCodeSamples('cursor')
+				}
+			}
+		},
 		music: {
 			help: "Get music posts",
 			comment: "Get a list of posts that are using this music. <br/>" + videoLink,
@@ -1162,7 +1209,7 @@ const API = Rests({
 				},
 				list: {
 					help: "Get a video comments list",
-					path: "/comment/list",
+					path: "/user/comment/list",
 					params: {
 						media_id: {
 							...p.videoId,
@@ -1183,7 +1230,7 @@ const API = Rests({
 				},
 				replies: {
 					help: "Get a comment reply list",
-					path: "/comment/reply/list",
+					path: "/user/comment/reply/list",
 					params: {
 						media_id: {
 							...p.videoId,
