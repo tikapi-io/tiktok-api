@@ -873,7 +873,7 @@ const API = Rests({
 		},
 		follow: {
 			help: "Follow a user",
-			comment: specialBadge + `<br>This endpoint is deprecated and might not work as excpeted.`,
+			comment: specialBadge + `<br>This endpoint is deprecated and might not work as expected.`,
 			path: "/user/follow",
 			method: "POST",
 			enctype: "json",
@@ -908,7 +908,7 @@ const API = Rests({
 		},
 		unfollow: {
 			help: "Unfollow a user",
-			comment: specialBadge + `<br>This endpoint is deprecated and might not work as excpeted.`,
+			comment: specialBadge + `<br>This endpoint is deprecated and might not work as expected.`,
 			path: "/user/unfollow",
 			method: "POST",
 			enctype: "json",
