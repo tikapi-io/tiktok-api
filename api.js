@@ -248,7 +248,10 @@ const API = Rests({
 					example: exampleSecUid
 				},
 				count: p.count,
-				nextCursor: p.nextCursor
+				nextCursor: {
+					...p.nextCursor,
+					type: "number"
+				}
 			},
 			$other:{
 				openapi: {
@@ -268,7 +271,10 @@ const API = Rests({
 					example: exampleSecUid
 				},
 				count: p.count,
-				nextCursor: p.nextCursor
+				nextCursor: {
+					...p.nextCursor,
+					type: "number"
+				}
 			},
 			$other:{
 				openapi: {
@@ -833,7 +839,10 @@ const API = Rests({
 					example: exampleSecUid
 				},
 				count: p.count,
-				nextCursor: p.nextCursor
+				nextCursor: {
+					...p.nextCursor,
+					type: "number"
+				}
 			},
 			$other:{
 				openapi: {
@@ -857,7 +866,10 @@ const API = Rests({
 					example: exampleSecUid
 				},
 				count: p.count,
-				nextCursor: p.nextCursor
+				nextCursor: {
+					...p.nextCursor,
+					type: "number"
+				}
 			},
 			$other:{
 				openapi: {
