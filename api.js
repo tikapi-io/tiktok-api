@@ -196,6 +196,31 @@ const API = Rests({
 				}
 			}
 		},
+		checkV3: {
+			path: "/public/check/v3",
+			help: "Get a user's profile information (alternative endpoint)",
+			comment: "Get profile information and statistics from a username. This endpoint consumes significantly more bandwidth than the other.",
+			params: {
+				username: {
+					...p.username,
+					example: 'lilyachty',
+				},
+				user_id: {
+					...p.user_id,
+					help: "Optionally you can get the profile information using the user_id parameter."
+				},
+				secUid:{
+					...p.secUid,
+					help: "Optionally you can get the profile information using the secUid parameter.",
+				}
+			},
+			$other:{
+				openapi: {
+					hide: true,
+					hideParams: ['session_id']
+				}
+			}
+		},
 		posts: {
 			help: "Get a user's feed posts",
 			path: "/public/posts",
@@ -562,9 +587,7 @@ const API = Rests({
 					hideParams: ['session_id']
 				}
 			}
-		},
-
-		
+		},		
 		discover: {
 			help: "Discover users, music, hashtags",
 			comment: `Get popular users, music or hashtag. You can also include *Account Key* to show personalized results for the user.`,
@@ -583,6 +606,9 @@ const API = Rests({
 			},
 			$other:{
 				openapi:{
+					fields:{
+						deprecated: true
+					},
 					...iterationCodeSamples('offset'),
 					hideParams: ['session_id']
 				}
@@ -601,6 +627,9 @@ const API = Rests({
 			},
 			$other:{
 				openapi:{
+					fields:{
+						deprecated: true,
+					},
 					hideParams: ['session_id']
 				}
 			}
@@ -640,7 +669,6 @@ const API = Rests({
 			}
 		}
 	},
-
 	user: {
 		help: 'The user endpoints require an `accountKey`',
 		$options: {

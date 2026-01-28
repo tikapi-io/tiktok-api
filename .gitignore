@@ -23,6 +23,7 @@ index.js
 api.d.ts
 # testing
 /coverage
+.npmrc
 
 # production
 /build
