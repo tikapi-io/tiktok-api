@@ -81,6 +81,8 @@ const p = {
 };
 
 const exampleSecUid = 'MS4wLjABAAAAsHntXC3s0AvxcecggxsoVa4eAiT8OVafVZ4OQXxy-9htpnUi0sOYSr0kGGD1Loud';
+const exampleSecUid2 = 'MS4wLjABAAAAKxXMUvcQ2Eo_vVxLn554nbLCdsrBKtxlu_FVhnG8TX92Zo2EezMi3FA0iQ7LJZzq';
+const exampleSecUid3 = 'MS4wLjABAAAABKjQkOz_IIzXXzEAl_9LGsWhvK-gBnlczwRPXK8EmxAp6K3X0qiaP5_OEqmm0XwG';
 const exampleUid = '6569595380449902597';
 const exampleVideoId = '7109178205151464746';
 const exampleVideoIdMoreParameters = '7003402629929913605';
@@ -138,8 +140,8 @@ const API = Rests({
 						}
 					],
 					responses:{
-						"403": {
-							"$ref": "./error_responses/403.yaml"
+						"502": {
+							"$ref": "./error_responses/502.yaml"
 						},
 					}
 				}
@@ -250,7 +252,7 @@ const API = Rests({
 				secUid: {
 					...p.secUid,
 					required: true,
-					example: exampleSecUid
+					example: exampleSecUid2
 				},
 				count: p.count,
 				cursor: p.cursor
@@ -270,7 +272,7 @@ const API = Rests({
 				secUid: {
 					...p.secUid,
 					required: true,
-					example: exampleSecUid
+					example: exampleSecUid2
 				},
 				count: p.count,
 				nextCursor: {
@@ -293,7 +295,7 @@ const API = Rests({
 				secUid: {
 					...p.secUid,
 					required: true,
-					example: exampleSecUid
+					example: exampleSecUid2
 				},
 				count: p.count,
 				nextCursor: {
@@ -409,7 +411,7 @@ const API = Rests({
 				secUid: {
 					...p.secUid,
 					required: true,
-					example: exampleSecUid
+					example: exampleSecUid3
 				},
 				count: p.count,
 				cursor: p.cursor,
@@ -431,7 +433,7 @@ const API = Rests({
 				playlist_id: {
 					validate: "^[0-9]+$",
 					required: true,
-					example: "6948562344666532614",
+					example: "7596415294902389534",
 					help: "The playlist ID."
 				},
 				count: p.count,
@@ -579,7 +581,7 @@ const API = Rests({
 				id: {
 					...p.musicId,
 					required: true,
-					example: "28459463"
+					example: "7289302423758228270"
 				}
 			},
 			$other:{
@@ -589,47 +591,21 @@ const API = Rests({
 			}
 		},		
 		discover: {
-			help: "Discover users, music, hashtags",
-			comment: `Get popular users, music or hashtag. You can also include *Account Key* to show personalized results for the user.`,
-			path: "/public/discover/{category}",
+			help: "Discover trending videos",
+			comment: `Get popular trending videos related to a keyword. It is not the same as searching; for searching use the <a href='#tag/Public/operation/public.search'>Search</a> endpoint instead`,
+			path: "/public/discover/v3",
 			params: {
-				category: {
-					help: "The discover category",
-					example: "users",
-					in: ["users", "music", "hashtag"],
-					location: "path",
-					type: "string",
-					required: true
-				},
-				count: p.count,
-				offset: p.offset,
-			},
-			$other:{
-				openapi:{
-					fields:{
-						deprecated: true
-					},
-					...iterationCodeSamples('offset'),
-					hideParams: ['session_id']
-				}
-			}
-		},
-		discoverKeyword:{
-			help: "Discover by keyword",
-			comment: "Get popular posts, users, music or hashtags from a keyword. <br><br>Limited to only a few items. If you want more, try using the <a href='#tag/Public/operation/public.search'>Search</a> endpoint instead.",
-			path: "/public/discover/keyword",
-			params:{
 				keyword: {
 					required: true,
 					example: "lilyachty",
 					type: "string"
 				},
+				count: p.count,
+				nextCursor: p.nextCursor,
 			},
 			$other:{
 				openapi:{
-					fields:{
-						deprecated: true,
-					},
+					...iterationCodeSamples('nextCursor'),
 					hideParams: ['session_id']
 				}
 			}
@@ -864,7 +840,7 @@ const API = Rests({
 			params: {
 				secUid: {
 					...p.secUid,
-					example: exampleSecUid
+					example: exampleSecUid2
 				},
 				count: p.count,
 				nextCursor: {
@@ -891,7 +867,7 @@ const API = Rests({
 			params: {
 				secUid: {
 					...p.secUid,
-					example: exampleSecUid
+					example: exampleSecUid2
 				},
 				count: p.count,
 				nextCursor: {
@@ -1019,7 +995,10 @@ const API = Rests({
 				path: "/user/likes",
 				params: {
 					count: p.count,
-					secUid: p.secUid,
+					secUid: {
+						...p.secUid,
+						example: exampleSecUid2
+					},
 					cursor: p.cursor,
 				},
 				$other:{
@@ -1093,7 +1072,7 @@ const API = Rests({
 					secUid: {
 						...p.secUid,
 						required: false,
-						example: exampleSecUid
+						example: exampleSecUid3
 					},
 					count: p.count,
 					cursor: p.cursor,
@@ -1115,7 +1094,7 @@ const API = Rests({
 					playlist_id: {
 						validate: "^[0-9]+$",
 						required: true,
-						example: "6948562344666532614",
+						example: "7596415294902389534",
 						help: "The playlist ID."
 					},
 					count: p.count,
